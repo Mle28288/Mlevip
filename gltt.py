@@ -1,7 +1,7 @@
+
 try:
     import requests
     import time
-    import os 
     import threading
     from art import *
     from colorama import Fore
