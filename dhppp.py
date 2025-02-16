@@ -50,13 +50,15 @@ def banner():
     🌸 Chúc bạn một ngày vui vẻ và nhiều may mắn! 🌸
     🐱 Mèo con chúc bạn code không lỗi! 🐱
     ─────────────────────────────────────────
-      Admin support tool zalo: 0367742346 
-             Chat support : https://zalo.me/g/niwjpz652
-                            https://zalo.me/g/uaahwq871
+            🛠️ Admin support tool Zalo:  0367742346
+                                   0348865758
+        Web tải tool và HD:
+        https://mlevip.blogspot.com/2025/02/huong-dan-su-dung-tool-body-font-family.html
+      🔗 Chat support: https://zalo.me/g/uaahwq871
              Web mạng vpn giá rẻ, nhận id apple free tại: timgiare.top ✔️
     
     ''',Colors.blue_to_cyan,interval=0.0001)
-    Write.Print('''                CopyRight: © Mle-Huynh-Quy@TOOL\n''',Colors.red_to_purple,interval=0.0001)
+    Write.Print('''                CopyRight: © KEDO@TOOL\n''',Colors.red_to_purple,interval=0.0001)
     print(red+"-"*70)
     print(f''' ''')
     print(red+"-"*70)
