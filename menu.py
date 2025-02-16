@@ -207,6 +207,8 @@ print("\033[1;95m║  \033[1;32mTool Tương Tác Chéo \033[1;95m║")
 print("\033[1;95m╚\033[1;36m═\033[1;95m═\033[1;36m═\033[1;95m═\033[1;36m═\033[1;36m═\033[1;95m═\033[1;36m═\033[1;95m═\033[1;36m═\033[1;95m═\033[1;36m═\033[1;95m═\033[1;36m═\033[1;95m═\033[1;36m═\033[1;95m═\033[1;36m═\033[1;95m═\033[1;36m═\033[1;95m═\033[1;36m═\033[1;95m╝")
 in_dong_khung_cau_vong('[TOOL]➩ Nhập Số [3] Tool TTC Facebook[Mobile+PC]')
 in_dong_khung_cau_vong('[TOOL]➩ Nhập Số [3.1] Tool TTC Facebook[PC Untiblock,Vip]')
+print("\033[1;95m║  \033[1;32mTool NUÔI FACEBOOK VIP \033[1;95m║")
+in_dong_khung_cau_vong('[TOOL]➩ Nhập Số [4] Tool Nuôi Facebook[PC]')
 
 
 
@@ -220,8 +222,8 @@ elif chon == '2':
     exec(requests.get('https://raw.githubusercontent.com/Mle28288/Mlevip/refs/heads/main/tdsttCopy.py').text)
 elif chon == '3':
     exec(requests.get('https://raw.githubusercontent.com/Mle28288/Mlevip/refs/heads/main/dhppp.py').text)
-elif chon == '1.4':
-	exec(requests.get('url').text)
+elif chon == '4':
+	exec(requests.get('https://raw.githubusercontent.com/Mle28288/Mlevip/refs/heads/main/main.py').text)
 elif chon == '1.5':
 	exec(requests.get('url').text)
 
