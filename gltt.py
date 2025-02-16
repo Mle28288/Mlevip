@@ -448,7 +448,7 @@ def banner():
       🔗 Chat support: https://zalo.me/g/uaahwq871
       🌐 Web VPN giá rẻ & ID Apple free: timgiare.top ✔️
     ─────────────────────────────────────────
-    CopyRight: © Bluesea@TOOL
+    CopyRight: © KEDO@TOOL
     '''
 
     # Hiệu ứng nhấp nháy
