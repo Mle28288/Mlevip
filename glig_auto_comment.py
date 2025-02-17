@@ -345,9 +345,7 @@ def INSTAGRAM():
             except Exception as e:
                 print(f"Lỗi xảy ra: {str(e)}")
                 continue
-import os
-import time
-from colorama import Fore, init
+
 init(autoreset=True)
 
 def banner():
