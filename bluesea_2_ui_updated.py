@@ -492,7 +492,7 @@ def facebok_all(profiles, passwords):
     print("Đã đóng tất cả các trình duyệt.")
 def facebook():
     while True:
-    print(f"\n" + "="*40)
+        print(f"\n" + "="*40)
             print(f"\n=== {BLUE}KEDO TOOL{RESET} ===")
             print(f"----------copyright: Mle × Quý")
             for i, profile in enumerate(profiles):
@@ -510,7 +510,7 @@ def facebook():
                 print("Lựa chọn không hợp lệ, vui lòng thử lại.")
 def ttc(profile=None):
     while profile is None:
-    print(f"\n" + "="*40)
+        print(f"\n" + "="*40)
         print(f"\n=== {BLUE}KEDO TOOL{RESET} ===")
         print(f"----------copyright: Mle × Quý")
         print(f'[{GREEN}1{RESET}] - LIKE {RED}ANTI BLOCK{RESET}\n[{GREEN}2{RESET}] - COMMENT {RED}ANTI BLOCK{RESET}\n')
