@@ -15,12 +15,12 @@ class HenryFACEBOOK:
     def ndp_delay_tool(self, p):
         while p > 1:
             p -= 1
-            print(Colorate.Horizontal(Colors.white_to_green, f'[ $HenryNET_Tools ] [|] [LO......][{p}]', 1), '     ', end='\r'); sleep(1/6)
-            print(Colorate.Horizontal(Colors.white_to_green, f'[ $HenryNET_Tools ] [/] [LOA.....][{p}]', 1), '     ', end='\r'); sleep(1/6)
-            print(Colorate.Horizontal(Colors.white_to_green, f'[ $HenryNET_Tools ] [-] [LOAD....][{p}]', 1), '     ', end='\r'); sleep(1/6)
-            print(Colorate.Horizontal(Colors.white_to_green, f'[ $HenryNET_Tools ] [+] [LOADI...][{p}]', 1), '     ', end='\r'); sleep(1/6)
-            print(Colorate.Horizontal(Colors.white_to_green, f'[ $HenryNET_Tools ] [\\] [LOADIN..][{p}]', 1), '     ', end='\r'); sleep(1/6)
-            print(Colorate.Horizontal(Colors.white_to_green, f'[ $HenryNET_Tools ] [|] [LOADING.][{p}]', 1), '     ', end='\r'); sleep(1/6)
+            print(Colorate.Horizontal(Colors.white_to_green, f'[ $KEDO_Tools ] [|] [LO......][{p}]', 1), '     ', end='\r'); sleep(1/6)
+            print(Colorate.Horizontal(Colors.white_to_green, f'[ $KEDO_Tools ] [/] [LOA.....][{p}]', 1), '     ', end='\r'); sleep(1/6)
+            print(Colorate.Horizontal(Colors.white_to_green, f'[ $KEDO_Tools ] [-] [LOAD....][{p}]', 1), '     ', end='\r'); sleep(1/6)
+            print(Colorate.Horizontal(Colors.white_to_green, f'[ $KEDO_Tools ] [+] [LOADI...][{p}]', 1), '     ', end='\r'); sleep(1/6)
+            print(Colorate.Horizontal(Colors.white_to_green, f'[ $KEDO_Tools ] [\\] [LOADIN..][{p}]', 1), '     ', end='\r'); sleep(1/6)
+            print(Colorate.Horizontal(Colors.white_to_green, f'[ $KEDO_Tools ] [|] [LOADING.][{p}]', 1), '     ', end='\r'); sleep(1/6)
 
     def getthongtinfacebook(self, cookie: str):
         headers_get = {
@@ -134,7 +134,7 @@ while True:
 print("\033[1;30m- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -")
 slpage = int(input('\033[1;33mSTOP THE TOOL IF YOU WANT TO CREATE AS MANY PAGES AS POSSIBLE: \033[1;37m'))
 print("\033[1;30m- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -")
-delay = int(input('\033[1;33mPLEASE ENTER DELAY REG PAGE: \033[1;37m'))
+delay = int(input('\033[1;33mPLEASE ENTER DELAY REG PAGE NHẬP DELAY REG TRÊN 5000: \033[1;37m'))
 print("\033[1;30m- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -")
 print("\033[1;30m- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -")
 print('\033[1;37mFound: \033[1;36m'+str(len(list_clone))+' \033[1;31mCookie')
