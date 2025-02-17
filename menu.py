@@ -236,7 +236,7 @@ elif chon == '1.2':
 	exec(requests.get('https://raw.githubusercontent.com/Mle28288/Mlevip/refs/heads/main/glig_auto_comment.py').text)
 elif chon == '1.3':
 	exec(requests.get('https://raw.githubusercontent.com/Mle28288/Mlevip/refs/heads/main/gllink.py').text)
-elif chon == '3.1':
+if chon == '3.1':
 	exec(requests.get('https://raw.githubusercontent.com/Mle28288/Mlevip/refs/heads/main/bluesea_2_ui_updated.py').text)
 
 	exec(requests.get('accc').text)
