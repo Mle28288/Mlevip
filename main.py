@@ -200,7 +200,7 @@ def like(driver):
     time.sleep(4)
     try:
         like_texts = [
-            'Like', 'Thích', 'Me gusta', 'Aimer', 'Piace'
+            'Like', 'Thích', 'Prefer', 'Aimer', 'Piace'
         ]
 
         like_buttons = []
