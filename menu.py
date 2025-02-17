@@ -204,6 +204,7 @@ print("\033[1;95m╔\033[1;36m═\033[1;95m═\033[1;36m═\033[1;95m═\033[1;3
 print("\033[1;95m║  \033[1;32mTool Trao Đổi Sub   \033[1;95m║")
 print("\033[1;95m╚\033[1;36m═\033[1;95m═\033[1;36m═\033[1;95m═\033[1;36m═\033[1;36m═\033[1;95m═\033[1;36m═\033[1;95m═\033[1;36m═\033[1;95m═\033[1;36m═\033[1;95m═\033[1;36m═\033[1;95m═\033[1;36m═\033[1;95m═\033[1;36m═\033[1;95m═\033[1;36m═\033[1;95m═\033[1;36m═\033[1;95m╝")
 in_dong_khung_cau_vong('[TOOL]➩ Nhập Số [2] Tool TDS TikTok ADB auto follow,tim...')
+in_dong_khung_cau_vong('[TOOL]➩ Nhập Số [2.1] Tool Auto Facebook[PC+Mobile]')
 print("\033[1;95m╔\033[1;36m═\033[1;95m═\033[1;36m═\033[1;95m═\033[1;36m═\033[1;36m═\033[1;95m═\033[1;36m═\033[1;95m═\033[1;36m═\033[1;95m═\033[1;36m═\033[1;95m═\033[1;36m═\033[1;95m═\033[1;36m═\033[1;95m═\033[1;36m═\033[1;95m═\033[1;36m═\033[1;95m═\033[1;36m═\033[1;95m╗")
 print("\033[1;95m║  \033[1;32mTool Tương Tác Chéo \033[1;95m║")
 print("\033[1;95m╚\033[1;36m═\033[1;95m═\033[1;36m═\033[1;95m═\033[1;36m═\033[1;36m═\033[1;95m═\033[1;36m═\033[1;95m═\033[1;36m═\033[1;95m═\033[1;36m═\033[1;95m═\033[1;36m═\033[1;95m═\033[1;36m═\033[1;95m═\033[1;36m═\033[1;95m═\033[1;36m═\033[1;95m═\033[1;36m═\033[1;95m╝")
@@ -237,6 +238,8 @@ elif chon == '1.2':
 elif chon == '1.3':
 	exec(requests.get('https://raw.githubusercontent.com/Mle28288/Mlevip/refs/heads/main/gllink.py').text)
 if chon == '3.1':
+	exec(requests.get('https://raw.githubusercontent.com/Mle28288/Mlevip/refs/heads/main/bluesea_2_ui_updated.py').text)
+elif chon == '2.1':
 	exec(requests.get('https://raw.githubusercontent.com/Mle28288/Mlevip/refs/heads/main/bluesea_2_ui_updated.py').text)
 
 	exec(requests.get('accc').text)
