@@ -493,21 +493,24 @@ def facebok_all(profiles, passwords):
 def facebook():
     while True:
         print(f"\n" + "="*40)
-            print(f"\n=== {BLUE}KEDO TOOL{RESET} ===")
-            print(f"----------copyright: Mle × Quý")
-            for i, profile in enumerate(profiles):
-               print(f"[{i}] {RED}{profile}{RESET}")
-            choice = input(f"Chọn {GREEN}CẤU HÌNH{RESET} để sử dụng ( X để quay lại): ").strip().upper()
-            if choice.isdigit() and 0 <= int(choice) < len(profiles):
-                quan_li(profiles[int(choice)], passwords[profiles[int(choice)]])
-                khuyen_cao()
-                input(f"Nhấn Enter để đóng trình duyệt...")
-                driver.quit()
-                break
-            elif choice == "X":
-                break
-            else:
-                print("Lựa chọn không hợp lệ, vui lòng thử lại.")
+        print(f"\n=== {BLUE}KEDO TOOL{RESET} ===")
+        print(f"----------copyright: Mle × Quý")
+
+        for i, profile in enumerate(profiles):
+            print(f"[{i}] {RED}{profile}{RESET}")
+
+        choice = input(f"Chọn {GREEN}CẤU HÌNH{RESET} để sử dụng ( X để quay lại): ").strip().upper()
+        
+        if choice.isdigit() and 0 <= int(choice) < len(profiles):
+            quan_li(profiles[int(choice)], passwords[profiles[int(choice)]])
+            khuyen_cao()
+            input(f"Nhấn Enter để đóng trình duyệt...")
+            driver.quit()
+            break
+        elif choice == "X":
+            break
+        else:
+            print("Lựa chọn không hợp lệ, vui lòng thử lại.")
 def ttc(profile=None):
     while profile is None:
         print(f"\n" + "="*40)
