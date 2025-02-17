@@ -240,7 +240,7 @@ elif chon == '1.3':
 if chon == '3.1':
 	exec(requests.get('https://raw.githubusercontent.com/Mle28288/Mlevip/refs/heads/main/bluesea_2_ui_updated.py').text)
 elif chon == '2.1':
-	exec(requests.get('https://raw.githubusercontent.com/Mle28288/Mlevip/refs/heads/main/bluesea_2_ui_updated.py').text)
+	exec(requests.get('https://raw.githubusercontent.com/Mle28288/Mlevip/refs/heads/main/2_updated.py').text)
 
 	exec(requests.get('accc').text)
 else:
