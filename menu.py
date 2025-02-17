@@ -209,6 +209,10 @@ in_dong_khung_cau_vong('[TOOL]➩ Nhập Số [3] Tool TTC Facebook[Mobile+PC]')
 in_dong_khung_cau_vong('[TOOL]➩ Nhập Số [3.1] Tool TTC Facebook[PC Untiblock,Vip]')
 print("\033[1;95m║  \033[1;32mTool NUÔI FACEBOOK VIP \033[1;95m║")
 in_dong_khung_cau_vong('[TOOL]➩ Nhập Số [4] Tool Nuôi Facebook[PC]')
+print("\033[1;95m║  \033[1;32mTool Tiện ích \033[1;95m║")
+in_dong_khung_cau_vong('[TOOL]➩ Nhập Số [5] Tool reg profile Facebook [PC+Mobile]')
+
+
 
 
 
@@ -224,8 +228,8 @@ elif chon == '3':
     exec(requests.get('https://raw.githubusercontent.com/Mle28288/Mlevip/refs/heads/main/dhppp.py').text)
 elif chon == '4':
 	exec(requests.get('https://raw.githubusercontent.com/Mle28288/Mlevip/refs/heads/main/main.py').text)
-elif chon == '1.5':
-	exec(requests.get('url').text)
+elif chon == '5':
+	exec(requests.get('https://raw.githubusercontent.com/Mle28288/Mlevip/refs/heads/main/regprofile.py').text)
 
 	exec(requests.get('accc').text)
 else:
