@@ -522,7 +522,7 @@ def ttc(profile=None):
             return
         else:
             print("Lựa chọn không hợp lệ, vui lòng thử lại.")
-    print(f"\n" + "="*40)
+        print(f"\n" + "="*40)
         print(f"\n=== {BLUE}KEDO TOOL{RESET} ===")
         print(f"----------copyright: Mle × Quý")
         for i, profile in enumerate(profiles):
@@ -744,7 +744,7 @@ def option_menu(profiles):
     if choice == "1":
         clean_all(profiles)
     elif choice == "2":
-    print("="*40)
+        print("="*40)
         print(f"\n=== {BLUE}Kedo TOOL{RESET} ===")
         print(f"----------copyright: Mle × KEDO")
         for i, profile in enumerate(profiles):
