@@ -346,18 +346,45 @@ def INSTAGRAM():
                 print(f"Lỗi xảy ra: {str(e)}")
                 continue
 def banner():
- os.system("cls" if os.name == "nt" else "clear")
- banner = f"""
-\
-\033[1;97m= = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
-"""
- for X in banner:
-  sys.stdout.write(X)
-  sys.stdout.flush() 
-  sleep(0.00125)
+    # Xóa màn hình
+    os.system('cls' if os.name == 'nt' else 'clear')
+
+    # Danh sách màu luân phiên
+    colors = [Fore.RED, Fore.GREEN, Fore.CYAN, Fore.MAGENTA, Fore.YELLOW, Fore.BLUE]
+
+    banner_text = '''
+            ─────────────────────────────────────────
+    🎀✨ Chào mừng bạn đến với Tool ✨🎀
+    ─────────────────────────────────────────
+    🌸 Chúc bạn một ngày vui vẻ và nhiều may mắn! 🌸
+    🐱 Mèo con chúc bạn code không lỗi! 🐱
+    ─────────────────────────────────────────
+      🛠️ Admin support tool Zalo:  0367742346
+                                   0348865758
+        Web tải tool và HD:
+        https://mlevip.blogspot.com/2025/02/huong-dan-su-dung-tool-body-font-family.html
+      🔗 Chat support: https://zalo.me/g/uaahwq871
+      🌐 Web VPN giá rẻ & ID Apple free: timgiare.top ✔️
+    ─────────────────────────────────────────
+    CopyRight: © KEDO@TOOL
+    '''
+
+    # Hiệu ứng nhấp nháy
+    for _ in range(10):
+        color = colors[_ % len(colors)]
+        print(color + banner_text)
+        time.sleep(0.5)
+        os.system('cls' if os.name == 'nt' else 'clear')
+
+    # Hiển thị banner lần cuối với màu nổi bật
+    print(Fore.LIGHTCYAN_EX + banner_text)
+    print(Fore.LIGHTRED_EX + "-"*70)
 
 def LIST():
     banner()
+
+os.system('cls' if os.name == 'nt' else 'clear')
+banner()
     print("\033[1;32mNhập \033[1;31m1 \033[1;33mđể vào \033[1;34mTool Instagram\033[1;33m")
 os.system('cls' if os.name== 'nt' else 'clear')
 banner()
