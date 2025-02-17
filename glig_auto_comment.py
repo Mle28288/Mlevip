@@ -345,13 +345,14 @@ def INSTAGRAM():
             except Exception as e:
                 print(f"Lỗi xảy ra: {str(e)}")
                 continue
+import os
+import time
+from colorama import Fore, init
+init(autoreset=True)
+
 def banner():
-    # Xóa màn hình
     os.system('cls' if os.name == 'nt' else 'clear')
-
-    # Danh sách màu luân phiên
     colors = [Fore.RED, Fore.GREEN, Fore.CYAN, Fore.MAGENTA, Fore.YELLOW, Fore.BLUE]
-
     banner_text = '''
             ─────────────────────────────────────────
     🎀✨ Chào mừng bạn đến với Tool ✨🎀
@@ -369,21 +370,19 @@ def banner():
     CopyRight: © KEDO@TOOL
     '''
 
-    # Hiệu ứng nhấp nháy
-    for _ in range(10):
+    for _ in range(5):
+        os.system('cls' if os.name == 'nt' else 'clear')
         color = colors[_ % len(colors)]
         print(color + banner_text)
         time.sleep(0.5)
-        os.system('cls' if os.name == 'nt' else 'clear')
 
-    # Hiển thị banner lần cuối với màu nổi bật
     print(Fore.LIGHTCYAN_EX + banner_text)
     print(Fore.LIGHTRED_EX + "-"*70)
 
 def LIST():
     banner()
     print("\033[1;32mNhập \033[1;31m1 \033[1;33mđể vào \033[1;34mTool Instagram\033[1;33m")
-os.system('cls' if os.name== 'nt' else 'clear')
+
 banner()
 checkfile = os.path.isfile('user.txt')
 if checkfile == False:
