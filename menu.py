@@ -235,7 +235,7 @@ elif chon == '4':
 elif chon == '5':
 	exec(requests.get('https://raw.githubusercontent.com/Mle28288/Mlevip/refs/heads/main/regprofile.py').text)
 elif chon == '1.2':
-	exec(requests.get('https://raw.githubusercontent.com/Mle28288/Mlevip/refs/heads/main/glig_auto_comment.py').text)
+	exec(requests.get('https://raw.githubusercontent.com/Mle28288/Mlevip/refs/heads/main/gljg.py').text)
 elif chon == '1.3':
 	exec(requests.get('https://raw.githubusercontent.com/Mle28288/Mlevip/refs/heads/main/gllink.py').text)
 if chon == '3.1':
