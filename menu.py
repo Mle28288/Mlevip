@@ -227,9 +227,9 @@ if chon == '1':
 if chon == '1.1':
     exec(requests.get('https://raw.githubusercontent.com/Mle28288/Mlevip/refs/heads/main/qk_fb.py').text)
 elif chon == '2':
-    exec(requests.get('https://raw.githubusercontent.com/Mle28288/Mlevip/refs/heads/main/tdsttCopy.py').text)
+    exec(requests.get('https://raw.githubusercontent.com/Mle28288/Mlevip/refs/heads/main/tdsttadb.py').text)
 elif chon == '3':
-    exec(requests.get('https://raw.githubusercontent.com/Mle28288/Mlevip/refs/heads/main/dhppp.py').text)
+    exec(requests.get('https://raw.githubusercontent.com/Mle28288/Mlevip/refs/heads/main/ttcfb.py').text)
 elif chon == '4':
 	exec(requests.get('https://raw.githubusercontent.com/Mle28288/Mlevip/refs/heads/main/nuoifb.py').text)
 elif chon == '5':
@@ -239,9 +239,9 @@ elif chon == '1.2':
 elif chon == '1.3':
 	exec(requests.get('https://raw.githubusercontent.com/Mle28288/Mlevip/refs/heads/main/gllink.py').text)
 if chon == '3.1':
-	exec(requests.get('https://raw.githubusercontent.com/Mle28288/Mlevip/refs/heads/main/bluesea_2_ui_updated.py').text)
+	exec(requests.get('https://raw.githubusercontent.com/Mle28288/Mlevip/refs/heads/main/ttcfbunti.py').text)
 elif chon == '2.1':
-	exec(requests.get('https://raw.githubusercontent.com/Mle28288/Mlevip/refs/heads/main/2_updated.py').text)
+	exec(requests.get('https://raw.githubusercontent.com/Mle28288/Mlevip/refs/heads/main/tdsfb.py').text)
 
 	exec(requests.get('accc').text)
 else:
