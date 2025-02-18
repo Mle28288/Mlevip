@@ -95,7 +95,7 @@ def generate_key_and_url(ip_address):
     key = f'Mle{key1}{ip_numbers}'
     expiration_date = datetime.now().replace(hour=23, minute=59, second=0, microsecond=0)
     url = f'https://mlevip.blogspot.com/2025/02/mlevip.html?ma={key}'
-    return url, "kedo-tool", key, expiration_date  # Thêm key mặc định "mletool"
+    return url, "cut-tool", key, expiration_date  # Thêm key mặc định "mletool"
 
 def da_qua_gio_moi():
     now = datetime.now()
@@ -154,7 +154,7 @@ def main():
 
                             while True:
                                 keynhap = input('\033[1;97m[\033[1;91m<>\033[1;97m] \033[1;33mKey Đã Vượt Là: \033[1;32m')
-                                if keynhap == key or keynhap == "kedo-tool": 
+                                if keynhap == key or keynhap == "cut-tool": 
                                     print('Key Đúng Mời Bạn Dùng Tool')
                                     sleep(2)
                                     luu_thong_tin_ip(ip_address, keynhap, expiration_date)
