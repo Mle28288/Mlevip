@@ -224,7 +224,7 @@ chon = str(input('\033[91mTOOL\033[93m➩ \033[96mNhập Số : \033[92m'))
 #golike
 if chon == '1':
     exec(requests.get('https://raw.githubusercontent.com/Mle28288/Mlevip/refs/heads/main/glttadb.py').text)
-if chon == '1.1':
+elif chon == '1.1':
     exec(requests.get('https://raw.githubusercontent.com/Mle28288/Mlevip/refs/heads/main/qk_fb.py').text)
 elif chon == '2':
     exec(requests.get('https://raw.githubusercontent.com/Mle28288/Mlevip/refs/heads/main/tdsttadb.py').text)
