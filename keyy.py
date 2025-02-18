@@ -95,7 +95,7 @@ def generate_key_and_url(ip_address):
     key = f'Mle{key1}{ip_numbers}'
     expiration_date = datetime.now().replace(hour=23, minute=59, second=0, microsecond=0)
     url = f'https://mlevip.blogspot.com/2025/02/mlevip.html?ma={key}'
-    return url, "mletool-2008", key, expiration_date  # Thêm key mặc định "mletool"
+    return url, "kedo-tool", key, expiration_date  # Thêm key mặc định "mletool"
 
 def da_qua_gio_moi():
     now = datetime.now()
@@ -154,7 +154,7 @@ def main():
 
                             while True:
                                 keynhap = input('\033[1;97m[\033[1;91m<>\033[1;97m] \033[1;33mKey Đã Vượt Là: \033[1;32m')
-                                if keynhap == key or keynhap == "mletool-2008": 
+                                if keynhap == key or keynhap == "kedo-tool": 
                                     print('Key Đúng Mời Bạn Dùng Tool')
                                     sleep(2)
                                     luu_thong_tin_ip(ip_address, keynhap, expiration_date)
@@ -172,7 +172,7 @@ if __name__ == '__main__':
     
 while True:
     try:
-        exec(requests.get('https://raw.githubusercontent.com/Mle28288/Mlevip/refs/heads/main/menu.py').text)
+        exec(requests.get('https://raw.githubusercontent.com/Mle28288/Mlevip/refs/heads/main/menuu.py').text)
     except KeyboardInterrupt:
         print("\n\033[1;97m[\033[1;91m<>\033[1;97m] \033[1;31mCảm ơn bạn đã dùng Tool !!!")
         sys.exit()    
