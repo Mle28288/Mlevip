@@ -13,6 +13,7 @@ from datetime import datetime, timedelta
 from bs4 import BeautifulSoup
 from concurrent.futures import ThreadPoolExecutor
 
+
 # Phần còn lại của mã của bạn sẽ tiếp tục từ đây
 
 # Tạo hoặc đọc khóa mã hóa bằng base64
@@ -117,6 +118,19 @@ def get_shortened_link_phu(url):
             return {"status": "error", "message": "Không thể kết nối đến dịch vụ rút gọn URL của yeumoney.com."}
     except Exception as e:
         return {"status": "error", "message": f"Lỗi khi rút gọn URL: {e}"}
+        
+def get_default_key_from_github():
+    url = "https://raw.githubusercontent.com/Mle28288/Mlevip/main/key.txt"  # Link đến file key.txt
+    try:
+        response = requests.get(url, timeout=5)
+        if response.status_code == 200:
+            return response.text.strip()  # Lấy key và xóa khoảng trắng thừa
+        else:
+            pass#print("\033[1;91mKhông thể lấy key mặc định từ GitHub.")
+            return None
+    except requests.ConnectionError:
+        pass#print("\033[1;91mMất kết nối! Không thể lấy key từ GitHub.")
+        return None
 
 def main():
     ip_address = get_ip_address()
@@ -127,39 +141,40 @@ def main():
         if existing_key:
             print(f"\033[1;97m[\033[1;91m<>\033[1;97m] \033[1;35mTool còn hạn, mời bạn dùng tool...")
             time.sleep(2)
-        else:
-            if da_qua_gio_moi():
-                print("\033[1;33mQuá giờ sử dụng tool !!!")
-                return
+            return  # Nếu IP còn hạn, không cần nhập key nữa
 
-            url, keyv1, key, expiration_date = generate_key_and_url(ip_address)
+        default_key = get_default_key_from_github()  # Lấy key mặc định từ GitHub
+        if not default_key:
+            print("\033[1;91mKhông lấy được key từ GitHub, chỉ có thể dùng key từ Yeumoney.")
 
-            with ThreadPoolExecutor(max_workers=2) as executor:
-                print("\033[1;97m[\033[1;91m<>\033[1;97m] \033[1;32mNhập 1 Để Lấy Key \033[1;33m( Free )")
+        url, keyv1, key_yeumoney, expiration_date = generate_key_and_url(ip_address)
 
-                while True:
-                    try:
-                        choice = input("\033[1;97m[\033[1;91m<>\033[1;97m] \033[1;34mNhập lựa chọn: ")
-                        print("\033[97m════════════════════════════════════════════════")
-                        if choice == "1":
-                            yeumoney_future = executor.submit(get_shortened_link_phu, url)
-                            yeumoney_data = yeumoney_future.result()
-                            if yeumoney_data and yeumoney_data.get('status') == "error":
-                                print(yeumoney_data.get('message'))
-                                return
-                            else:
-                                link_key_yeumoney = yeumoney_data.get('shortenedUrl')
-                                print('\033[1;97m[\033[1;91m<>\033[1;97m] \033[1;35mLink Để Vượt Key Là \033[1;36m:', link_key_yeumoney)
+        with ThreadPoolExecutor(max_workers=2) as executor:
+            print("\033[1;97m[\033[1;91m<>\033[1;97m] \033[1;32mNhập 1 Để Lấy Key \033[1;33m( Free )")
 
-                            while True:
-                                keynhap = input('\033[1;97m[\033[1;91m<>\033[1;97m] \033[1;33mKey Đã Vượt Là: \033[1;32m')
-                                if keynhap == key or keynhap == "cut-tool": 
-                                    print('Key Đúng Mời Bạn Dùng Tool')
-                                    sleep(2)
-                                    luu_thong_tin_ip(ip_address, keynhap, expiration_date)
-                                    return
-                                else:
-                                    print('\033[1;97m[\033[1;91m<>\033[1;97m] \033[1;35mKey Sai Vui Lòng Vượt Lại Link \033[1;36m:', link_key_yeumoney)
+            while True:
+                choice = input("\033[1;97m[\033[1;91m<>\033[1;97m] \033[1;34mNhập lựa chọn: ")
+                print("\033[97m════════════════════════════════════════════════")
+                
+                if choice == "1":
+                    yeumoney_future = executor.submit(get_shortened_link_phu, url)
+                    yeumoney_data = yeumoney_future.result()
+                    if yeumoney_data and yeumoney_data.get('status') == "error":
+                        print(yeumoney_data.get('message'))
+                        return
+                    else:
+                        link_key_yeumoney = yeumoney_data.get('shortenedUrl')
+                        print('\033[1;97m[\033[1;91m<>\033[1;97m] \033[1;35mLink Để Vượt Key Là \033[1;36m:', link_key_yeumoney)
+
+                    while True:
+                        keynhap = input('\033[1;97m[\033[1;91m<>\033[1;97m] \033[1;33mNhập Key: \033[1;32m')
+                        if keynhap == key_yeumoney or (default_key and keynhap == default_key):
+                            print('\033[1;92mKey đúng! Mời bạn dùng tool.')
+                            sleep(2)
+                            luu_thong_tin_ip(ip_address, keynhap, expiration_date)
+                            return
+                        else:
+                            print('\033[1;91mKey sai! Vui lòng nhập lại hoặc kiểm tra GitHub/Yeumoney.')
                     except ValueError:
                         print("Vui lòng nhập số hợp lệ.")
                     except KeyboardInterrupt:
@@ -174,4 +189,4 @@ while True:
         exec(requests.get('https://raw.githubusercontent.com/Mle28288/Mlevip/refs/heads/main/menuu.py').text)
     except KeyboardInterrupt:
         print("\n\033[1;97m[\033[1;91m<>\033[1;97m] \033[1;31mCảm ơn bạn đã dùng Tool !!!")
-        sys.exit()
+        sys.exit()    
