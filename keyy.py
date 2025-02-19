@@ -3,11 +3,21 @@ import sys
 import time
 import json
 import os
+import base64
 from datetime import datetime, timedelta
 from concurrent.futures import ThreadPoolExecutor
 
+KEY_FILE = "keytool.txt"  # Lưu key vào keytool.txt
 
-KEY_FILE = "saved_keys.json"  # File lưu key đã nhập
+
+def encrypt_data(data):
+    """Mã hóa dữ liệu bằng Base64"""
+    return base64.b64encode(data.encode()).decode()
+
+
+def decrypt_data(encrypted_data):
+    """Giải mã dữ liệu từ Base64"""
+    return base64.b64decode(encrypted_data.encode()).decode()
 
 
 def get_ip_address():
@@ -22,13 +32,13 @@ def get_ip_address():
 
 def get_default_key_from_github():
     """Lấy key mặc định từ GitHub"""
-    url = "https://raw.githubusercontent.com/Mle28288/Mlevip/main/key.txt"
+    url = "https://raw.githubusercontent.com/Mle28288/Mlevip/refs/heads/main/key.txt"
     try:
         response = requests.get(url, timeout=5)
         if response.status_code == 200:
             return response.text.strip()
     except requests.ConnectionError:
-        print("\033[1;91mKhông thể lấy key từ GitHub! Kiểm tra kết nối mạng.")
+        pass#print("\033[1;91mKhông thể lấy key từ GitHub! Kiểm tra kết nối mạng.")
     return None
 
 
@@ -58,10 +68,11 @@ def generate_key_and_url(ip_address):
 
 
 def save_key(key, expiration_date):
-    """Lưu key vào file cùng với ngày hết hạn"""
+    """Lưu key vào file `keytool.txt` với mã hóa"""
     data = {"key": key, "expiration_date": expiration_date.isoformat()}
+    encrypted_data = encrypt_data(json.dumps(data))
     with open(KEY_FILE, "w") as file:
-        json.dump(data, file)
+        file.write(encrypted_data)
 
 
 def load_saved_key():
@@ -71,9 +82,10 @@ def load_saved_key():
 
     try:
         with open(KEY_FILE, "r") as file:
-            data = json.load(file)
-            expiration_date = datetime.fromisoformat(data["expiration_date"])
+            encrypted_data = file.read()
+            data = json.loads(decrypt_data(encrypted_data))
 
+            expiration_date = datetime.fromisoformat(data["expiration_date"])
             if expiration_date > datetime.now():
                 return data["key"]  # Key còn hạn, trả về key
             else:
@@ -113,7 +125,7 @@ def main():
                     time.sleep(2)
                     return
                 else:
-                    print("\033[1;91mKey sai! Vui lòng nhập lại hoặc kiểm tra GitHub/Yeumoney.")
+                    print("\033[1;91mKey sai! Vui lòng nhập lại.")
             except KeyboardInterrupt:
                 print("\n\033[1;91mThoát tool!")
                 sys.exit()
