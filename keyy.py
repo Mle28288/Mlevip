@@ -120,7 +120,7 @@ def get_shortened_link_phu(url):
         return {"status": "error", "message": f"Lỗi khi rút gọn URL: {e}"}
         
 def get_default_key_from_github():
-    url = "https://raw.githubusercontent.com/Mle28288/Mlevip/main/key.txt"  # Link đến file key.txt
+    url = "https://raw.githubusercontent.com/Mle28288/Mlevip/refs/heads/main/key.txt"  # Link đến file key.txt
     try:
         response = requests.get(url, timeout=5)
         if response.status_code == 200:
