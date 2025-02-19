@@ -131,4 +131,4 @@ while True:
         sys.exit()
     except KeyboardInterrupt:
         print("\n\033[1;91mCảm ơn bạn đã dùng Tool!")
-        sys.exit("Thoát")
+        sys.exit()
