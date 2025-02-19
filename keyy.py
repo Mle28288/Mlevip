@@ -22,13 +22,13 @@ def get_ip_address():
 
 def get_default_key_from_github():
     """Lấy key mặc định từ GitHub"""
-    url = "https://raw.githubusercontent.com/Mle28288/Mlevip/refs/heads/main/key.txt"
+    url = "https://raw.githubusercontent.com/Mle28288/Mlevip/main/key.txt"
     try:
         response = requests.get(url, timeout=5)
         if response.status_code == 200:
             return response.text.strip()
     except requests.ConnectionError:
-        pass#print("\033[1;91mKhông thể lấy key từ GitHub! Kiểm tra kết nối mạng.")
+        print("\033[1;91mKhông thể lấy key từ GitHub! Kiểm tra kết nối mạng.")
     return None
 
 
