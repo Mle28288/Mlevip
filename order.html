@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đặt Voucher Shopee</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body { 
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .form-container {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            max-width: 500px;
+            margin: 0 auto;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        .form-title {
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 30px;
+            color: #667eea;
+        }
+        .input-group {
+            margin-bottom: 20px;
+        }
+        .input-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+        }
+        .form-input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+        .form-input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+        .voucher-btn {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: white;
+            font-size: 16px;
+        }
+        .voucher-btn:hover {
+            border-color: #667eea;
+            background: #f7fafc;
+        }
+        .voucher-btn.selected {
+            border-color: #667eea;
+            background: #667eea;
+            color: white;
+        }
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+        .submit-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <div class="form-title">
+            <i class="fas fa-gift"></i> Đặt Voucher Shopee
+        </div>
+        
+        <form id="orderForm">
+            <!-- Chọn voucher -->
+            <div class="input-group">
+                <label class="input-label">Chọn loại voucher</label>
+                <button type="button" class="voucher-btn" data-voucher="60k" data-price="20000">
+                    🎫 Voucher 60k - 20.000đ
+                </button>
+                <button type="button" class="voucher-btn" data-voucher="80k" data-price="25000">
+                    🎟️ Voucher 80k - 25.000đ
+                </button>
+                <button type="button" class="voucher-btn" data-voucher="100k" data-price="30000">
+                    🎁 Voucher 100k - 30.000đ
+                </button>
+            </div>
+
+            <!-- Link sản phẩm -->
+            <div class="input-group">
+                <label class="input-label">
+                    <i class="fas fa-link"></i> Link sản phẩm Shopee
+                </label>
+                <input type="url" class="form-input" id="productLink" 
+                       placeholder="https://shopee.vn/..." required>
+            </div>
+
+            <!-- Tên sản phẩm -->
+            <div class="input-group">
+                <label class="input-label">
+                    <i class="fas fa-box"></i> Tên sản phẩm
+                </label>
+                <input type="text" class="form-input" id="productName" 
+                       placeholder="Áo thun cotton..." required>
+            </div>
+
+            <!-- Phân loại -->
+            <div class="input-group">
+                <label class="input-label">
+                    <i class="fas fa-palette"></i> Phân loại
+                </label>
+                <input type="text" class="form-input" id="variant" 
+                       placeholder="Màu đỏ, Size M..." required>
+            </div>
+
+            <!-- Số lượng -->
+            <div class="input-group">
+                <label class="input-label">
+                    <i class="fas fa-sort-numeric-up"></i> Số lượng
+                </label>
+                <input type="number" class="form-input" id="quantity" 
+                       placeholder="1" min="1" value="1" required>
+            </div>
+
+            <!-- Ghi chú -->
+            <div class="input-group">
+                <label class="input-label">
+                    <i class="fas fa-comment"></i> Ghi chú (tùy chọn)
+                </label>
+                <textarea class="form-input" id="note" rows="3" 
+                          placeholder="Ghi chú cho shop..."></textarea>
+            </div>
+
+            <!-- Địa chỉ -->
+            <div class="input-group">
+                <label class="input-label">
+                    <i class="fas fa-map-marker-alt"></i> Địa chỉ nhận hàng
+                </label>
+                <textarea class="form-input" id="address" rows="3" 
+                          placeholder="Họ tên, SĐT, địa chỉ đầy đủ..." required></textarea>
+            </div>
+
+            <!-- Submit button -->
+            <button type="submit" class="submit-btn" id="submitBtn">
+                <i class="fas fa-paper-plane"></i> Đặt hàng ngay
+            </button>
+        </form>
+    </div>
+
+    <script>
+        const tg = window.Telegram.WebApp;
+        tg.expand();
+
+        let selectedVoucher = null;
+        let selectedPrice = 0;
+
+        // Xử lý chọn voucher
+        document.querySelectorAll('.voucher-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.voucher-btn').forEach(b => {
+                    b.classList.remove('selected');
+                });
+                this.classList.add('selected');
+                selectedVoucher = this.dataset.voucher;
+                selectedPrice = parseInt(this.dataset.price);
+            });
+        });
+
+        // Xử lý submit form
+        document.getElementById('orderForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            if (!selectedVoucher) {
+                tg.showAlert('Vui lòng chọn loại voucher!');
+                return;
+            }
+
+            const orderData = {
+                voucher: selectedVoucher,
+                price: selectedPrice,
+                productLink: document.getElementById('productLink').value,
+                productName: document.getElementById('productName').value,
+                variant: document.getElementById('variant').value,
+                quantity: parseInt(document.getElementById('quantity').value),
+                note: document.getElementById('note').value,
+                address: document.getElementById('address').value
+            };
+
+            // Gửi data về bot
+            tg.sendData(JSON.stringify(orderData));
+            
+            // Đóng WebApp
+            tg.close();
+        });
+
+        // Hiển thị main button (optional)
+        tg.MainButton.text = "Đặt hàng";
+        tg.MainButton.show();
+        tg.MainButton.onClick(function() {
+            document.getElementById('orderForm').dispatchEvent(new Event('submit'));
+        });
+    </script>
+</body>
+</html>
