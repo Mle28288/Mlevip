@@ -3,174 +3,214 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Đặt Voucher Shopee</title>
+    <title>Đặt Hàng Voucher</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
-        body { 
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--tg-theme-bg-color, #ffffff);
+            color: var(--tg-theme-text-color, #000000);
             padding: 20px;
+            padding-bottom: 80px;
         }
-        .form-container {
-            background: white;
-            border-radius: 20px;
-            padding: 30px;
-            max-width: 500px;
+
+        .container {
+            max-width: 600px;
             margin: 0 auto;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
         }
-        .form-title {
+
+        h1 {
             font-size: 24px;
-            font-weight: bold;
-            text-align: center;
-            margin-bottom: 30px;
-            color: #667eea;
+            margin-bottom: 20px;
+            color: var(--tg-theme-text-color, #000000);
         }
-        .input-group {
+
+        .voucher-info {
+            background: var(--tg-theme-secondary-bg-color, #f0f0f0);
+            padding: 15px;
+            border-radius: 10px;
             margin-bottom: 20px;
         }
-        .input-label {
+
+        .voucher-info h2 {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        .voucher-info p {
+            font-size: 16px;
+            color: var(--tg-theme-hint-color, #999999);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
             display: block;
             margin-bottom: 8px;
-            font-weight: 600;
-            color: #333;
+            font-weight: 500;
+            font-size: 14px;
         }
-        .form-input {
+
+        input, textarea, select {
             width: 100%;
             padding: 12px;
-            border: 2px solid #e2e8f0;
-            border-radius: 10px;
+            border: 1px solid var(--tg-theme-hint-color, #cccccc);
+            border-radius: 8px;
             font-size: 16px;
-            transition: all 0.3s;
+            background-color: var(--tg-theme-bg-color, #ffffff);
+            color: var(--tg-theme-text-color, #000000);
         }
-        .form-input:focus {
-            outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+
+        textarea {
+            min-height: 80px;
+            resize: vertical;
         }
-        .voucher-btn {
+
+        .required {
+            color: #ff3b30;
+        }
+
+        .error {
+            color: #ff3b30;
+            font-size: 12px;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .error.show {
+            display: block;
+        }
+
+        input.invalid, textarea.invalid {
+            border-color: #ff3b30;
+        }
+
+        .hint {
+            font-size: 12px;
+            color: var(--tg-theme-hint-color, #999999);
+            margin-top: 5px;
+        }
+
+        button {
             width: 100%;
             padding: 15px;
-            border: 2px solid #e2e8f0;
-            border-radius: 10px;
-            margin-bottom: 10px;
-            cursor: pointer;
-            transition: all 0.3s;
-            background: white;
-            font-size: 16px;
-        }
-        .voucher-btn:hover {
-            border-color: #667eea;
-            background: #f7fafc;
-        }
-        .voucher-btn.selected {
-            border-color: #667eea;
-            background: #667eea;
-            color: white;
-        }
-        .submit-btn {
-            width: 100%;
-            padding: 15px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
+            background-color: var(--tg-theme-button-color, #3390ec);
+            color: var(--tg-theme-button-text-color, #ffffff);
             border: none;
-            border-radius: 10px;
-            font-size: 18px;
-            font-weight: bold;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s;
+            margin-top: 20px;
         }
-        .submit-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
-        }
-        .submit-btn:disabled {
+
+        button:disabled {
             opacity: 0.5;
             cursor: not-allowed;
         }
     </style>
 </head>
 <body>
-    <div class="form-container">
-        <div class="form-title">
-            <i class="fas fa-gift"></i> Đặt Voucher Shopee
-        </div>
+    <div class="container">
+        <h1>📝 Đặt Hàng Voucher Shopee</h1>
         
+        <div class="voucher-info">
+            <h2 id="voucherName">Voucher</h2>
+            <p id="voucherPrice">Giá: 0đ</p>
+        </div>
+
         <form id="orderForm">
-            <!-- Chọn voucher -->
-            <div class="input-group">
-                <label class="input-label">Chọn loại voucher</label>
-                <button type="button" class="voucher-btn" data-voucher="60k" data-price="20000">
-                    🎫 Voucher 60k - 20.000đ
-                </button>
-                <button type="button" class="voucher-btn" data-voucher="80k" data-price="25000">
-                    🎟️ Voucher 80k - 25.000đ
-                </button>
-                <button type="button" class="voucher-btn" data-voucher="100k" data-price="30000">
-                    🎁 Voucher 100k - 30.000đ
-                </button>
+            <div class="form-group">
+                <label for="productLink">Link sản phẩm Shopee <span class="required">*</span></label>
+                <input 
+                    type="url" 
+                    id="productLink" 
+                    name="productLink" 
+                    placeholder="https://shopee.vn/..." 
+                    required
+                >
+                <div class="error" id="productLinkError">Link sản phẩm không hợp lệ</div>
+                <div class="hint">Vui lòng copy link sản phẩm từ Shopee</div>
             </div>
 
-            <!-- Link sản phẩm -->
-            <div class="input-group">
-                <label class="input-label">
-                    <i class="fas fa-link"></i> Link sản phẩm Shopee
-                </label>
-                <input type="url" class="form-input" id="productLink" 
-                       placeholder="https://shopee.vn/..." required>
+            <div class="form-group">
+                <label for="productName">Tên sản phẩm <span class="required">*</span></label>
+                <input 
+                    type="text" 
+                    id="productName" 
+                    name="productName" 
+                    placeholder="Áo thun nam" 
+                    required
+                >
+                <div class="error" id="productNameError">Vui lòng nhập tên sản phẩm</div>
             </div>
 
-            <!-- Tên sản phẩm -->
-            <div class="input-group">
-                <label class="input-label">
-                    <i class="fas fa-box"></i> Tên sản phẩm
-                </label>
-                <input type="text" class="form-input" id="productName" 
-                       placeholder="Áo thun cotton..." required>
+            <div class="form-group">
+                <label for="variant">Phân loại (màu sắc, size...)</label>
+                <input 
+                    type="text" 
+                    id="variant" 
+                    name="variant" 
+                    placeholder="Đỏ, Size L"
+                >
+                <div class="hint">Nếu có nhiều phân loại, vui lòng ghi rõ</div>
             </div>
 
-            <!-- Phân loại -->
-            <div class="input-group">
-                <label class="input-label">
-                    <i class="fas fa-palette"></i> Phân loại
-                </label>
-                <input type="text" class="form-input" id="variant" 
-                       placeholder="Màu đỏ, Size M..." required>
+            <div class="form-group">
+                <label for="quantity">Số lượng <span class="required">*</span></label>
+                <input 
+                    type="number" 
+                    id="quantity" 
+                    name="quantity" 
+                    min="1" 
+                    value="1" 
+                    required
+                >
+                <div class="error" id="quantityError">Số lượng tối thiểu là 1</div>
             </div>
 
-            <!-- Số lượng -->
-            <div class="input-group">
-                <label class="input-label">
-                    <i class="fas fa-sort-numeric-up"></i> Số lượng
-                </label>
-                <input type="number" class="form-input" id="quantity" 
-                       placeholder="1" min="1" value="1" required>
+            <div class="form-group">
+                <label for="note">Ghi chú đơn hàng</label>
+                <textarea 
+                    id="note" 
+                    name="note" 
+                    placeholder="Giao giờ hành chính, gọi trước khi giao..."
+                    maxlength="500"
+                ></textarea>
+                <div class="hint">Tối đa 500 ký tự</div>
             </div>
 
-            <!-- Ghi chú -->
-            <div class="input-group">
-                <label class="input-label">
-                    <i class="fas fa-comment"></i> Ghi chú (tùy chọn)
-                </label>
-                <textarea class="form-input" id="note" rows="3" 
-                          placeholder="Ghi chú cho shop..."></textarea>
+            <div class="form-group">
+                <label for="address">Địa chỉ giao hàng <span class="required">*</span></label>
+                <textarea 
+                    id="address" 
+                    name="address" 
+                    placeholder="123 Nguyễn Huệ, Phường Bến Nghé, Quận 1, TP.HCM" 
+                    required
+                ></textarea>
+                <div class="error" id="addressError">Địa chỉ phải có ít nhất 20 ký tự</div>
+                <div class="hint">Vui lòng ghi rõ địa chỉ để ship hàng</div>
             </div>
 
-            <!-- Địa chỉ -->
-            <div class="input-group">
-                <label class="input-label">
-                    <i class="fas fa-map-marker-alt"></i> Địa chỉ nhận hàng
-                </label>
-                <textarea class="form-input" id="address" rows="3" 
-                          placeholder="Họ tên, SĐT, địa chỉ đầy đủ..." required></textarea>
+            <div class="form-group">
+                <label for="phone">Số điện thoại <span class="required">*</span></label>
+                <input 
+                    type="tel" 
+                    id="phone" 
+                    name="phone" 
+                    placeholder="0901234567" 
+                    required
+                >
+                <div class="error" id="phoneError">Số điện thoại không hợp lệ (10-11 số)</div>
             </div>
-
-            <!-- Submit button -->
-            <button type="submit" class="submit-btn" id="submitBtn">
-                <i class="fas fa-paper-plane"></i> Đặt hàng ngay
-            </button>
         </form>
     </div>
 
@@ -178,54 +218,138 @@
         const tg = window.Telegram.WebApp;
         tg.expand();
 
-        let selectedVoucher = null;
-        let selectedPrice = 0;
+        // Get voucher type from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const voucherType = urlParams.get('voucher') || '80k';
 
-        // Xử lý chọn voucher
-        document.querySelectorAll('.voucher-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                document.querySelectorAll('.voucher-btn').forEach(b => {
-                    b.classList.remove('selected');
-                });
-                this.classList.add('selected');
-                selectedVoucher = this.dataset.voucher;
-                selectedPrice = parseInt(this.dataset.price);
-            });
+        // Voucher data
+        const vouchers = {
+            '60k': { name: 'Voucher 60k', price: 20000 },
+            '80k': { name: 'Voucher 80k', price: 25000 },
+            '100k': { name: 'Voucher 100k', price: 30000 }
+        };
+
+        // Display voucher info
+        const voucher = vouchers[voucherType];
+        document.getElementById('voucherName').textContent = voucher.name;
+        document.getElementById('voucherPrice').textContent = `Giá: ${voucher.price.toLocaleString('vi-VN')}đ`;
+
+        // Form validation
+        function validateShopeeLink(link) {
+            return link.includes('shopee.vn');
+        }
+
+        function validatePhone(phone) {
+            const phoneRegex = /^0\d{9,10}$/;
+            return phoneRegex.test(phone.replace(/\s/g, ''));
+        }
+
+        function validateAddress(address) {
+            return address.length >= 20;
+        }
+
+        function showError(fieldId, show) {
+            const errorElement = document.getElementById(fieldId + 'Error');
+            const inputElement = document.getElementById(fieldId);
+            
+            if (show) {
+                errorElement.classList.add('show');
+                inputElement.classList.add('invalid');
+            } else {
+                errorElement.classList.remove('show');
+                inputElement.classList.remove('invalid');
+            }
+        }
+
+        // Real-time validation
+        document.getElementById('productLink').addEventListener('blur', function() {
+            const isValid = validateShopeeLink(this.value);
+            showError('productLink', this.value && !isValid);
         });
 
-        // Xử lý submit form
-        document.getElementById('orderForm').addEventListener('submit', function(e) {
-            e.preventDefault();
+        document.getElementById('phone').addEventListener('blur', function() {
+            const isValid = validatePhone(this.value);
+            showError('phone', this.value && !isValid);
+        });
 
-            if (!selectedVoucher) {
-                tg.showAlert('Vui lòng chọn loại voucher!');
+        document.getElementById('address').addEventListener('blur', function() {
+            const isValid = validateAddress(this.value);
+            showError('address', this.value && !isValid);
+        });
+
+        document.getElementById('quantity').addEventListener('blur', function() {
+            const isValid = parseInt(this.value) >= 1;
+            showError('quantity', !isValid);
+        });
+
+        // Submit form
+        function submitForm() {
+            const form = document.getElementById('orderForm');
+            const formData = new FormData(form);
+            
+            // Validate all fields
+            const productLink = formData.get('productLink');
+            const productName = formData.get('productName');
+            const phone = formData.get('phone');
+            const address = formData.get('address');
+            const quantity = parseInt(formData.get('quantity'));
+
+            let isValid = true;
+
+            if (!validateShopeeLink(productLink)) {
+                showError('productLink', true);
+                isValid = false;
+            }
+
+            if (!productName || productName.trim().length < 2) {
+                showError('productName', true);
+                isValid = false;
+            }
+
+            if (!validatePhone(phone)) {
+                showError('phone', true);
+                isValid = false;
+            }
+
+            if (!validateAddress(address)) {
+                showError('address', true);
+                isValid = false;
+            }
+
+            if (quantity < 1) {
+                showError('quantity', true);
+                isValid = false;
+            }
+
+            if (!isValid) {
+                tg.showAlert('Vui lòng kiểm tra lại thông tin đơn hàng!');
                 return;
             }
 
+            // Prepare data
             const orderData = {
-                voucher: selectedVoucher,
-                price: selectedPrice,
-                productLink: document.getElementById('productLink').value,
-                productName: document.getElementById('productName').value,
-                variant: document.getElementById('variant').value,
-                quantity: parseInt(document.getElementById('quantity').value),
-                note: document.getElementById('note').value,
-                address: document.getElementById('address').value
+                voucher_type: voucherType,
+                product_link: productLink,
+                product_name: productName.trim(),
+                variant: formData.get('variant') || 'Không có',
+                quantity: quantity,
+                note: formData.get('note') || 'Không có',
+                address: address.trim(),
+                phone: phone.replace(/\s/g, '')
             };
 
-            // Gửi data về bot
+            // Send data to bot
             tg.sendData(JSON.stringify(orderData));
-            
-            // Đóng WebApp
-            tg.close();
-        });
+        }
 
-        // Hiển thị main button (optional)
-        tg.MainButton.text = "Đặt hàng";
+        // Setup main button
+        tg.MainButton.text = 'Đặt Hàng';
         tg.MainButton.show();
-        tg.MainButton.onClick(function() {
-            document.getElementById('orderForm').dispatchEvent(new Event('submit'));
-        });
+        tg.MainButton.onClick(submitForm);
+
+        // Enable back button
+        tg.BackButton.show();
+        tg.BackButton.onClick(() => tg.close());
     </script>
 </body>
 </html>
